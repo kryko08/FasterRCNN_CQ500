@@ -6,7 +6,7 @@ import torch
 
 from PIL import Image, ImageDraw, ImageFont
 
-from config import CLASSES, COLOR_MAP
+from config import CLASSES, COLOR_MAP, VALID_DIR, VALID_CSV
 
 
 def sample_show(image_directory, annotation_directory, sample_index):
@@ -20,52 +20,27 @@ def sample_show(image_directory, annotation_directory, sample_index):
 
     # Image draw object
     draw = ImageDraw.Draw(img)
-    #font = ImageFont.
+
+    fontsize = 20
+    font_path = "/Users/krystof/Desktop/arial.ttf"
+    font = ImageFont.truetype(font_path, fontsize)
 
     for ind, box in enumerate(bboxes):
         hemorrhage_type = CLASSES[label_index[ind]]
         color = COLOR_MAP[hemorrhage_type]
 
-        coordinates = box.numpy()  # Tensor to numpy
-        print(coordinates)
-        draw.rectangle(coordinates, None, color, 3)  # Draw bbox
-        draw.text((coordinates[0], coordinates[1]), hemorrhage_type)
+        coordinates = box.numpy()
+        x, y = box[0], box[1]
+
+        draw.text(xy=(x, y - 25), font=font, text=hemorrhage_type, align="right", fill=color)
+        draw.rectangle(coordinates, None, color, 2)  # Draw bbox
 
     img.show()
 
 
-
-# figure = plt.figure(figsize=(8, 8))
-# cols, rows = 3, 3
-# for i in range(1, cols * rows + 1):
-#     # Get object
-#     sample_idx = torch.randint(len(test_dataset), size=(1,)).item()
-#     img, target = test_dataset[sample_idx]
-#
-#     # Add to figure
-#     figure.add_subplot(rows, cols, i)
-#
-#     # Image draw object
-#     draw_image = ImageDraw.Draw(img)
-#
-#     label_index = target["labels"]
-#     bboxes = target["boxes"]
-#     # Draw rectangle for every bounding box
-#     for ind, box in enumerate(bboxes):
-#         hemorrhage_type = CLASSES[label_index[ind]]
-#         color = COLOR_MAP[hemorrhage_type]
-#         # Tensor to numpy
-#         coordinates = box.numpy()
-#         draw_image.rectangle(coordinates, None, color, 3)
-#
-#         plt.title(f"Sample{i}")
-#         plt.axis("off")
-#         plt.imshow(img)
-# plt.show()
-
 if __name__ == "__main__":
-    cwd = os.getcwd()
-    annotations = os.path.join(cwd, "../data/train.csv")
-    im_dir = os.path.join(cwd, "../data/train")
-    ind = random.randint(0, 2000)
-    sample_show(im_dir, annotations, ind)
+    im_dir = VALID_DIR
+    annotations = VALID_CSV
+    for i in range(4):
+        ind = random.randint(0, 500)
+        sample_show(im_dir, annotations, ind)
