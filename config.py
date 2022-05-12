@@ -1,3 +1,5 @@
+import os
+
 import torch
 
 BATCH_SIZE = 2
@@ -11,20 +13,23 @@ CLASSES = ["__Background__", "Intraparenchymal", "Epidural", "Subdural", "Chroni
 NUM_CLASSES = len(CLASSES)
 
 COLOR_MAP = {
-    "Intraparenchymal": "blue",
-    "Chronic": "cyan",
-    "Intraventricular": "green",
-    "Subdural": "lime",
-    "Epidural": "pink",
-    "Subarachnoid": "yellow"
+    "Intraparenchymal": (41, 51, 230),
+    "Chronic": (34, 205, 214),
+    "Intraventricular": (26, 150, 53),
+    "Subdural": (16, 181, 7),
+    "Epidural": (224, 74, 204),
+    "Subarachnoid": (232, 210, 12)
 }
+
+
 
 OUT_DIR = "outputs"
 
-TRAIN_DIR = "data/train"
-TRAIN_CSV = "data/train.csv"
+TRAIN_DIR = "/Users/krystof/Desktop/split_it/faster/train"
+TRAIN_CSV = "/Users/krystof/Desktop/split_it/faster/train.csv"
 
-TEST_DIR = "data/test"
-TEST_CSV = "data/test.csv"
+TEST_DIR = "/Users/krystof/Desktop/split_it/faster/test"
+TEST_CSV = "/Users/krystof/Desktop/split_it/faster/test.csv"
 
-
+VALID_DIR = "/Users/krystof/Desktop/split_it/faster/valid"
+VALID_CSV = "/Users/krystof/Desktop/split_it/faster/valid.csv"
