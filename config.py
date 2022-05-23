@@ -22,7 +22,6 @@ COLOR_MAP = {
 }
 
 
-
 OUT_DIR = "outputs"
 
 TRAIN_DIR = "/Users/krystof/Desktop/split_it/faster/train"
@@ -33,3 +32,5 @@ TEST_CSV = "/Users/krystof/Desktop/split_it/faster/test.csv"
 
 VALID_DIR = "/Users/krystof/Desktop/split_it/faster/valid"
 VALID_CSV = "/Users/krystof/Desktop/split_it/faster/valid.csv"
+
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
