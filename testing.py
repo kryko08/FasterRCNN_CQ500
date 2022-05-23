@@ -24,7 +24,3 @@ def no_grad(mdl):
 if __name__ == "__main__":
     model = create_model(NUM_CLASSES)
     cProfile.run("with_grad(model)")
-
-
-
-
