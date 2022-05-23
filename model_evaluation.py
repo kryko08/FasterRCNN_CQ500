@@ -198,6 +198,8 @@ def eval():
     loader.dataset.set_transform(0)  # always evaluate on untransformed images
 
     model = create_model(NUM_CLASSES)
+    checkpoint = torch.load(OUT_DIR/"best_model.pth")
+    model.load_state_dict(checkpoint['model_state_dict'])
     model.to(DEVICE)
     model.eval()  # To inference mode
 
