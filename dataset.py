@@ -78,7 +78,7 @@ class HemorrhageDataset(Dataset):
         elif num == 3:
             self.transform = MySaltPepper(5000, 7000)
         elif num == 4:
-            self.transform = MyRotation(30)
+            self.transform = MyRotation(50)
         elif num == 5:
             self.transform = MyHorizontalFlip()
 
